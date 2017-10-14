@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Odds</title>
+  </head>
+  <body>
+    <a href='/'><button type="button" style=color:blue; name="schedule">Back to Schedule</button></a>
+    <center>
+    <h1>{{games.away_team}}  at  {{games.home_team}} </h1><br>
+  </center>
+    <h3>Game Start:{{games.match_time}}</h3>
+    <h3> Starting Pitchers:</h3>
+    <h3>{{games.away_team}}: {{games.away_pitcher}}</h3>
+    <h3>{{games.home_team}}:  {{games.home_pitcher}}</h3>
+  <table>
+    {% csrf_token %}
+      <thead>
+        <tr>
+          <th style= padding:30px;>Odd Type</th>
+          <th style= padding:10px;>MoneyLineAway</th>
+          <th style= padding:10px;>MoneyLineHome</th>
+          <th style= padding:10px;>PointSpreadAway</th>
+          <th style= padding:10px;>PointSpreadAwayLine</th>
+          <th style= padding:10px;>PointSpreadHome</th>
+          <th style= padding:10px;>PointSpreadHomeLine</th>
+          <th style= padding:10px;>TotalNumber</th>
+          <th style= padding:10px;>OverLine</th>
+          <th style= padding:10px;>UnderLine</th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr>
+        {% for odds in game_odds %}
+        <td>{{odds.odd_type}}</td>
+        <td>{{odds.money_line_away}}</td>
+        <td>{{odds.money_line_home}}</td>
+        <td>{{odds.point_spread_away}}</td>
+        <td>{{odds.point_spread_away_line}}</td>
+        <td>{{odds.point_spread_home}}</td>
+        <td>{{odds.point_spread_home_line}}</td>
+        <td>{{odds.total_number}}</td>
+        <td>{{odds.over_line}}</td>
+        <td>{{odds.under_line}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    <a href='/create_bets/{{games.id}}'><button type="button" style=color:blue; name="create bet">Create a Proposition on this Event!</button></a>
+    <a href='/show_other_bets/{{games.id}}'><button type="button" style=color:blue; name="show other bets">See Other Propositions on this event!</button></a>
+</body>
+</html>

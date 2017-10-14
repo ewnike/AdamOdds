@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <style>
+    .alert {
+      font-size: 18px;
+      color: red;
+    }
+    </style>
+  </head>
+  <body>
+    <center>
+    <h1>Login</h1>
+    <form  action="/login" method="post">
+      {% csrf_token %}
+      Email:<br>
+      <input type="text" name="email" value=""><br>
+      Password:<br>
+      <input type="password" name="password" value=""><br><br>
+      <input type="submit" name="submit"><br><br>
+    </form>
+    <h3><a href="/registrate">Not a member? Click to register!</a><br><br></h3>
+    {% if messages %}
+      {% for m in messages %}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+          <h2>{{m}}</h2>
+        </div>
+      {% endfor %}
+    {% endif %}
+    <a href="/logout">Logout</a>
+  </center>
+  </body>
+</html>

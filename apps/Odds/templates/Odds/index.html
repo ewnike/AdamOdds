@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Odds API</title>
+
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  </head>
+  <body>
+    <center>
+  <h1>Today's MLB Schedule</h1>
+  <!-- <form action="/Odds/enter_sport" style = "margin-bottom:20px; margin-top: 50px;"   method="post">
+    {% csrf_token %}
+    <label for="user_input">Enter Sport:</label>
+    <input id="user_input" name="user_input" type="search">
+    <input class= 'btn btn-primary' type="submit"  value="Today's Games" id = 'button_sport', console.log "I was clicked">
+  </form> -->
+  <a href='/login_index'><button type="button" style=color:blue; name="login">Login</button></a>
+  <a href='/logout'><button type="button" style=color:blue; name="logout">Logout</button></a>
+  <table>
+    {% csrf_token %}
+      <thead>
+        <tr>
+          <th style= padding:20px;>Get Odds</th>
+          <th style= padding:50px;>Away Team</th>
+          <th style= padding:50px;>Home Team</th>
+          <th style= padding:50px;>Away Pitcher</th>
+          <th style= padding:50px;>Home Pitcher</th>
+          <th style= padding:50px;>Match Time</th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr>
+        {% for game in schedule %}
+        <td><a href='show_odds/{{game.id}}'><button type="button" style=color:blue; name="get odds">Odds</button></a></td>
+        <td>{{game.away_team}}</td>
+        <td>{{game.home_team}}</td>
+        <td>{{game.away_pitcher}}</td>
+        <td>{{game.home_pitcher}}</td>
+        <td>{{game.match_time}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</center>
+
+  </body>
+</html>

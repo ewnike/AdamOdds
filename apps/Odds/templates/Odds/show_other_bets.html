@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Homepage</title>
+  <style>
+  .atags{
+    vertical-align: top;
+    margin-left: 750px;
+    display:inline-block;
+  }
+  .displaybox{
+    display:inline-block;
+    margin-left: 800px;
+    /*vertical-align: top;*/
+    margin-top: -600px;
+  }
+  .container{
+    background-color:#FCFADD;
+    color:#714D03;
+    border:4px double #DEBB07;
+    height: 500px;
+    width:1200px;
+  }
+  </style>
+
+    <meta charset="utf-8">
+    <title>Other Bets</title>
+  </head>
+  <body>
+    <a href='/show_odds/{{games.id}}'><button type="button" style=color:blue; name="schedule">Back to Odds</button></a>
+    <center>
+    <h1>Open or Filled Positions for {{games.away_team}}  at  {{games.home_team}}</h1>
+      <h3>Game Start:{{games.match_time}}</h3>
+      <div class="container">
+        <table>
+          {% csrf_token %}
+            <thead>
+              <tr>
+                <th style= padding:5px;>MoneyLineAway</th>
+                <th style= padding:5px;>MoneyLineHome</th>
+                <th style= padding:5px;>OverLine</th>
+                <th style= padding:5px;>UnderLine</th>
+                <th style= padding:5px;>PtSprdAwayLine</th>
+                <th style= padding:5px;>PtSprdHomeLine</th>
+                <th style= padding:5px;>Original Amount</th>
+                <th style= padding:5px;>Remaining Amount</th>
+                <th style= padding:5px;>Last Updated</th>
+              </tr>
+            </thead>
+          {% for betslip in betslips %}
+          <tr>
+            <td style = "padding: 8px;">{{betslip.money_line_away}}</td>
+            <td style = "padding: 8px;">{{betslip.money_line_home}}</td>
+            <td style = "padding: 8px;">{{betslip.over_line}}</td>
+            <td style = "padding: 8px;">{{betslip.under_line}}</td>
+            <td style = "padding: 8px;">{{betslip.point_spread_away_line}}</td>
+            <td style = "padding: 8px;">{{betslip.point_spread_home_line}}</td>
+            <td style = "padding: 8px;">{{betslip.amount}}</td>
+            <td style = "padding: 8px;">{{betslip.amount}}</td>
+            <td style = "padding: 8px;">{{betslip.updated_at}}</td>
+            <td style = "padding: 8px;">  <a href='/take_other_side/{{betslip.id}}'><button type="button" style=color:blue; name="take_other_side" >Take the other side of this Propostion</button></a></td>
+            <td style = "padding: 8px;"> <a href='/create_bets/{{games.id}}'><button type="button" style=color:blue; name="create_bets">Make Your Own Proposition</button></a></td>
+          </tr>
+          {% endfor %}
+        </table>
+      </center>
+
+  </body>
+</html>

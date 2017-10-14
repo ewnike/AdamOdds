@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Take other side</title>
+    <style>
+    .betbox {
+       /*height: 60px;
+       width: 270px;*/
+       position: relative;
+       border: 2px solid #cdcdcd;
+       border-color: rgba(0,0,0,.14);
+       background-color: AliceBlue ;
+       font-size: 14px;
+ }
+   .amtbox {
+      height: 20px;
+      width: 120px;
+      position: relative;
+      border: 2px solid #cdcdcd;
+      border-color: rgba(0,0,0,.14);
+      background-color: AliceBlue ;
+      font-size: 14px;
+  }
+    .checkbox{
+      position: relative;
+      border: 2px solid #cdcdcd;
+      border-color: rgba(0,0,0,.14);
+      background-color: AliceBlue ;
+      font-size: 14px;
+    }
+    </style>
+    {% load staticfiles %}
+    <script src="{% static 'Odds/js/main.js'%}" charset="utf-8"></script>
+  </head>
+  <body>
+    <center>
+      <h1>{{games.away_team}}  at  {{games.home_team}}</h1>
+      <h3>Game Start:{{match_time}}</h3>
+        <form action =' /validate_proposition/{{games.id}}' method="post">
+            {% csrf_token %}
+          Moneyline Away: {{betslips.money_line_away}}
+          <input type="checkbox" class = "checkbox" name= "odds" value="{{'money_line_away'}}+{{odds.money_line_away}}" ><br><br>
+          Moneyline Home: {{betslips.money_line_home}}
+          <input type="checkbox" class = "checkbox"   name= "odds"  value= "{{'money_line_home'}}+{{odds.money_line_home}}"><br><br>
+          Overline: {{betslips.over_line}}
+          <input type="checkbox" class = "checkbox"   name= "odds"  value= "{{'over_line'}}+{{odds.over_line}}"><br><br>
+          Underline: {{betslips.under_line}}
+          <input type="checkbox" class = "checkbox"   name= "odds"  value= "{{'under_line'}}+{{odds.under_line}}"><br><br>
+          Point Spread Away Line: {{betslips.point_spread_away_line}}
+          <input type="checkbox" class = "checkbox"  name= "odds"  value= " {{'point_spread_away_line'}}+{{odds.point_spread_away_line}}"><br><br>
+          Point Spread Home Line: {{betslips.point_spread_home_line}}
+          <input type="checkbox" class = "checkbox"   name= "odds"  value= "{{'point_spread_home_line'}}+{{odds.point_spread_home_line}}"><br><br>
+          Amount: {{betslips.amount}}<br>
+          <input type="text" class ="amtbox" name = "amount" value = ""><br><br>
+          <input type="submit" value="Submit" onclick="return confirm('Is this information correct?')"><br>
+
+        </form>
+      </center>
+  </body>
+</html>
