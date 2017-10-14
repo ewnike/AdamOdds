@@ -5,7 +5,7 @@ from apps.Odds.models import *
 import sqlite3
 
 API_BASE = "https://jsonodds.com/api/"
-API_KEY = "85cc9464-3b0a-4d1a-9e5b-4263c6700b19"
+API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 DEFAULT_HEADER = {'JsonOdds-API-Key': API_KEY}
 ENDPOINT_SCHEDULE="odds/{}"
